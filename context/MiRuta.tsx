@@ -37,7 +37,7 @@ export function MiRutaProvider({ children }: React.PropsWithChildren) {
       shape,
       setShape,
     }),
-    [route, units, loading, shape],
+    [route, units, loading, shape, routes],
   );
 
   return (

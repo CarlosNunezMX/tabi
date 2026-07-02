@@ -7,11 +7,32 @@ import MiRutaHandler from "@/lib/MiRuta";
 import { RouteShape } from "@carlosnunezmx/basutei";
 import MiRutaMap from "@/components/miruta/map";
 import useRoutes from "@/hooks/useRoutes";
+import { useDevice } from "@/context/device-context";
+import { HasNotComponent } from "@/components/HasNotComponent";
 
 export default function MiRuta() {
+  const { location, network, loadLocation } = useDevice();
+
+  if (!location)
+    return (
+      <HasNotComponent
+        icon="map-marker-off"
+        title="No hay permiso para la ubicación"
+        description="Por favor active la ubicación o de permisos para acceder a ella."
+        tryAgain={loadLocation}
+      />
+    );
+  if (!network)
+    return (
+      <HasNotComponent
+        icon="wifi-strength-off"
+        title="No network enabled!"
+        description="Enable network"
+      />
+    );
+
   const { route, setLoading, setUnits, setShape } = useMiRuta();
   useRoutes();
-
   useEffect(() => {
     if (!route) return;
     MiRutaHandler.withClient(async (client) => {

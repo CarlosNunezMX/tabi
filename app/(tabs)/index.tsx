@@ -1,24 +1,32 @@
-import AddCardModal from "@/components/card/addCardModal";
+import AddCardModal from "@/components/card/read-card";
+import CardInfo from "@/components/card/card-info";
+import ReadError from "@/components/card/read-error";
 import ThemedView from "@/components/ThemedView";
-import { MiCardReader, MiCardSession } from "@/lib/com.jericayapp.card";
+import { useMiCard } from "@/context/MiCard";
+import { MiCardReader, MiCardSession } from "@carlosnunezmx/micard";
 import { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { FAB, Icon, Text } from "react-native-paper";
+import { StyleSheet } from "react-native";
+import { FAB } from "react-native-paper";
+import NoCard from "@/components/card/no-card";
+import TermsAcceptance from "@/components/terms-acceptance";
 
 export default function HomeScreen() {
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
+  const { isReading, readCard, error, uid } = useMiCard();
   useEffect(() => {
-    if (visibleModal) {
+    if (visibleModal && !isReading) {
       MiCardSession.withSession(async (session) => {
-        const reader = new MiCardReader(session);
-        await reader.selectApplication();
-        await reader.getServiceFile("DEBIT");
-        await reader.getServiceFile("TICKETS");
+        await readCard(new MiCardReader(session));
+        setVisibleModal(false);
       });
     }
-  }, [visibleModal]);
+  }, [visibleModal, isReading, readCard]);
   return (
-    <ThemedView>
+    <ThemedView useInsets usePaddingHorizontal>
+      <TermsAcceptance />
+      {error && <ReadError />}
+      {!error && uid && !visibleModal && <CardInfo />}
+      {!uid && <NoCard />}
       <FAB
         icon={"nfc-variant"}
         style={styles.fab}
@@ -26,28 +34,12 @@ export default function HomeScreen() {
         onPress={() => setVisibleModal((state) => !state)}
       />
 
-      <View style={styles.noCards}>
-        <Icon source="credit-card" size={48} />
-        <Text variant="bodyLarge">
-          Vamos a ver cuanto saldo tiene tu tarjeta!
-        </Text>
-      </View>
-
-      <AddCardModal
-        visible={visibleModal}
-        onDimiss={() => setVisibleModal((state) => !state)}
-      />
+      <AddCardModal visible={visibleModal} />
     </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-  noCards: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 8,
-  },
   fab: {
     position: "absolute",
     margin: 16,

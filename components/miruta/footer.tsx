@@ -8,8 +8,10 @@ import {
 import { StyleSheet } from "react-native";
 import { router } from "expo-router";
 import { useMiRuta } from "@/context/MiRuta";
+import { useTranslation } from "react-i18next";
 export function MiRutaFooter() {
   const { route, loading, units } = useMiRuta();
+  const { t } = useTranslation();
   return (
     <Surface style={styles.surface}>
       <TouchableRipple
@@ -17,20 +19,19 @@ export function MiRutaFooter() {
         rippleColor={"rgba(255, 255, 255, .72)"}
       >
         <List.Item
-          title={route ? route.ruta : "Selecciona una ruta"}
-          description="Rutas desde SITEUR/Mi Ruta"
+          title={route ? route.ruta : t("miruta.selection")}
+          description={t("miruta.data")}
           right={(props) =>
             loading ? (
               <ActivityIndicator {...props} />
             ) : (
               units && (
                 <Chip icon={"bus"}>
-                  {units ? units.units.length : 0}{" "}
-                  {units
-                    ? units.units.length > 1
-                      ? "unidades"
-                      : "unidad"
-                    : "unidades"}
+                  {units.units.length === 0
+                    ? t("miruta.noUnits")
+                    : units.units.length === 1
+                      ? "1 " + t("miruta.unit")
+                      : units.units.length + " " + t("miruta.units")}
                 </Chip>
               )
             )

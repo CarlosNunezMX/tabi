@@ -1,5 +1,8 @@
 import { View } from "react-native";
+interface GapViewProps extends React.PropsWithChildren {
+  gap?: number;
+}
 
-export default function GapView({ children }: React.PropsWithChildren) {
-  return <View style={{ gap: 16 }}>{children}</View>;
+export default function GapView({ children, gap }: GapViewProps = { gap: 16 }) {
+  return <View style={{ gap }}>{children}</View>;
 }

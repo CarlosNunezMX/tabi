@@ -1,7 +1,7 @@
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
-
+import "@/i18n";
 import Providers from "@/components/Providers";
 import SelectorAppbar from "@/components/miruta/selector/appbar";
 

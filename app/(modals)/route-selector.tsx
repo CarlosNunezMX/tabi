@@ -3,16 +3,25 @@ import RouteList from "@/components/miruta/selector/routeList";
 import ThemedView from "@/components/ThemedView";
 import GapView from "@/components/views/GapView";
 import { useMiRuta } from "@/context/MiRuta";
+import MiRutaHandler from "@/lib/MiRuta";
 import { Route } from "@carlosnunezmx/basutei";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ScrollView } from "react-native";
 import { Searchbar } from "react-native-paper";
 
 export default function RouteSelector() {
-  const { loading, routes } = useMiRuta();
+  const { t } = useTranslation();
+  const { loading, routes, setRoutes } = useMiRuta();
   const [value, setValue] = useState("");
   const [filtered, setFiltered] = useState<Route[]>([]);
 
+  useEffect(() => {
+    if (routes.length !== 0) return;
+    MiRutaHandler.withClient(async (client) =>
+      setRoutes(await client.getRoutes()),
+    );
+  }, [routes, setRoutes]);
   useEffect(() => {
     if (loading) return;
     if (!value) setFiltered(routes);
@@ -27,7 +36,7 @@ export default function RouteSelector() {
   return (
     <ThemedView usePaddingHorizontal>
       <Searchbar
-        placeholder="Busca alguna ruta..."
+        placeholder={t("miruta.modal.search")}
         value={value}
         onChangeText={(val) => setValue(val)}
       />
@@ -36,22 +45,22 @@ export default function RouteSelector() {
         <GapView>
           <RouteList
             icon="train-variant"
-            title="Mi Tren"
+            title={t("miruta.modal.mi_tren")}
             routes={filtered.filter((route) => route.service === "MITREN")}
           />
           <RouteList
             icon="bus"
-            title="Alimentadoras"
+            title={t("miruta.modal.feeders")}
             routes={filtered.filter((route) => route.ruta.startsWith("A"))}
           />
           <RouteList
             icon="bus"
-            title="Mi Transporte - Tren Lígero"
+            title={t("miruta.modal.train_routes")}
             routes={filtered.filter((route) => route.ruta.startsWith("R"))}
           />
           <RouteList
             icon="bus"
-            title="Mi Macro Aeropuerto"
+            title={t("miruta.modal.airport")}
             routes={filtered
               .filter((route) => route.service === "MMA")
               .concat(

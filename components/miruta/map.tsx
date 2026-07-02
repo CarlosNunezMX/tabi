@@ -13,9 +13,7 @@ import { useEffect, useState } from "react";
 import { useColorScheme } from "react-native";
 import { Icon, Surface, useTheme } from "react-native-paper";
 
-Mapbox.setAccessToken(
-  process.env.EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN!
-);
+Mapbox.setAccessToken(process.env.EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN!);
 
 export default function MiRutaMap() {
   const { shape, route, setUnits, units } = useMiRuta();
@@ -26,7 +24,7 @@ export default function MiRutaMap() {
   useEffect(() => {
     if (!route) return;
     MiRutaHandler.withClient(async (client) => {
-      const es = await client.getRouteStream(route.id);
+      const es = client.getRouteStream(route.id);
       console.log(es);
       setEs(es);
     });
@@ -93,7 +91,7 @@ export default function MiRutaMap() {
                 alignItems: "center",
               }}
             >
-              <Icon source={"arrow-up"} size={32} />
+              <Icon source={"bus"} size={32} />
             </Surface>
           </PointAnnotation>
         ))}

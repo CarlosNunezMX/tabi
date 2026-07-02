@@ -48,7 +48,8 @@
         }
       ],
       "react-native-nfc-manager",
-      "@rnmapbox/maps"
+      "@rnmapbox/maps",
+      "expo-localization"
     ],
     "experiments": {
       "typedRoutes": true,

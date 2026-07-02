@@ -1,0 +1,75 @@
+export default {
+  card: {
+    profiles: "Installed profile",
+    validAt: "Expiration",
+    profile: "Profile",
+    balance: "Balance",
+    noCard: "Let's see your Mi Movilidad card balance!",
+    tickets: "Trips",
+    history: "Card history",
+    modal: {
+      title: "Hold your card near your device",
+      body: "To read your card, hold it near your device and keep it there until this window closes.",
+    },
+    eventTypes: {
+      NO_SPECIFIED: "Unspecified",
+      DISTRIBUTION: "Distribution",
+      USAGE: "Turnstile",
+      RECHARGE: "Recharge",
+      TRANSFER: "Transfer",
+      REFUND: "Refund",
+      RETURN: "Return",
+      EMISSION: "Issuance",
+    },
+    trip_transport_type: {
+      NO_SPECIFIED: "Unspecified",
+      URBAN_BUS: "Complementary",
+      TRAIN: "Mi Tren L1/L2/L3/L4",
+      SITREN: "Mi Transporte - Light Rail",
+      MI_MACRO_FEEDER: "Mi Macro Calzada/Periferico Feeders",
+      MI_MACRO: "Mi Macro Calzada/Periferico",
+    },
+    bpd_trip: "trip",
+    debit_trip: "MXN",
+  },
+  terms: {
+    title: "Read this before using this application",
+    body: [
+      "JericayApp/Tabi(From now on called Tabi) is a public beta version. Some features may contain bugs, change unexpectedly, or provide incomplete information while development continues.",
+      "This application is an independent, unofficial project and is not affiliated with, endorsed by, or authorized by SITEUR or any government entity or public transportation operator.",
+      "The information displayed (including balances, transactions, routes, schedules, vehicle locations, and other data) is provided for informational purposes only and may be inaccurate, incomplete, or outdated. Do not make important decisions based solely on the information provided by this application.",
+      "For any official procedures, inquiries, or critical information, always verify the information through SITEUR's official channels and sources.",
+      "By continuing to use Tabi, you acknowledge that you understand these terms and agree to use the application at your own risk.",
+    ],
+    acceptance: "I accept, continue",
+  },
+
+  common: {
+    date: "Date",
+    tryAgain: "Try again...",
+    accept: "Accept",
+    cancel: "Cancel",
+    loading: "Please wait...",
+    route: "Route",
+  },
+  miruta: {
+    selection: "Select a route",
+    data: "Data provided by SITEUR Mi Ruta",
+    units: "vehicles",
+    noUnits: "No vehicles",
+    credits: {
+      title: "Credits",
+      warn: "Data is obtained from the official SITEUR platform and is not affiliated with it. Please consult the official sources before making any decisions at ",
+      licenses:
+        "Communication with Mi Ruta uses an open-source module licensed under GPLv3, available at ",
+    },
+    modal: {
+      selection: "Select a route",
+      search: "Let's find a route!",
+      mi_tren: "Mi Tren",
+      feeders: "Feeder Routes",
+      train_routes: "Mi Transporte - Light Rail",
+      airport: "Mi Macro Airport",
+    },
+  },
+};
