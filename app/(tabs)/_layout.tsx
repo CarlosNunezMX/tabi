@@ -1,5 +1,5 @@
-import { Tabs } from "expo-router";
-import React from "react";
+import { router, Tabs } from "expo-router";
+import React, { useEffect } from "react";
 
 import TabBar from "@/components/TabBar";
 import { Icon } from "react-native-paper";

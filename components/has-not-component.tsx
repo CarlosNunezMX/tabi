@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { Button, Icon, IconButton, Surface, Text } from "react-native-paper";
 import ThemedView from "./ThemedView";
 import { useTranslation } from "react-i18next";
+import GapView from "./views/GapView";
 
 interface HasNotComponentProps {
   icon: string;
@@ -17,15 +18,24 @@ export function HasNotComponent({
 }: HasNotComponentProps) {
   const { t } = useTranslation();
   return (
-    <ThemedView>
+    <ThemedView useInsets usePaddingHorizontal>
       <Surface style={styles.surface}>
-        <Icon source={icon} size={64} />
-        <View>
-          <Text variant="titleLarge">{title}</Text>
-          <Text>{description}</Text>
-        </View>
+        <GapView gap={16}>
+          <Icon source={icon} size={64} />
+          <View>
+            <Text variant="titleLarge">{title}</Text>
+            <Text>{description}</Text>
+          </View>
 
-        {tryAgain && <Button>{t("common.tryAgain")}</Button>}
+          {tryAgain && (
+            <Button
+              mode="contained"
+              icon={(props) => <Icon {...props} source={"reload"} />}
+            >
+              {t("common.tryAgain")}
+            </Button>
+          )}
+        </GapView>
       </Surface>
     </ThemedView>
   );

@@ -8,9 +8,13 @@ import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { FAB } from "react-native-paper";
 import NoCard from "@/components/card/no-card";
-import TermsAcceptance from "@/components/terms-acceptance";
+import { useDevice } from "@/context/device-context";
+import { HasNotComponent } from "@/components/has-not-component";
+import { useTranslation } from "react-i18next";
 
 export default function HomeScreen() {
+  const { nfc, loadNfc } = useDevice();
+  const { t } = useTranslation();
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
   const { isReading, readCard, error, uid } = useMiCard();
   useEffect(() => {
@@ -21,9 +25,19 @@ export default function HomeScreen() {
       });
     }
   }, [visibleModal, isReading, readCard]);
+
+  if (!nfc)
+    return (
+      <HasNotComponent
+        icon="nfc-variant-off"
+        description={t("card.no_nfc_body")}
+        title={t("card.no_nfc_title")}
+        tryAgain={loadNfc}
+      />
+    );
+
   return (
     <ThemedView useInsets usePaddingHorizontal>
-      <TermsAcceptance />
       {error && <ReadError />}
       {!error && uid && !visibleModal && <CardInfo />}
       {!uid && <NoCard />}

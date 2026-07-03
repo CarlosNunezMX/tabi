@@ -1,4 +1,4 @@
-import { EventsValues } from "@/lib/com.jericayapp.card/constants/eventType";
+import { EventsValues } from "@carlosnunezmx/micard";
 
 export const CARD_EVENT_ICON: Record<EventsValues, string> = {
   NO_SPECIFIED: "help-circle-outline",

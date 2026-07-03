@@ -2,6 +2,9 @@ export default {
   card: {
     profiles: "Installed profile",
     validAt: "Expiration",
+    no_nfc_title: "Your device isn't compatible",
+    no_nfc_body:
+      "Your device has not NFC sensor or NFC is disabled, to use this function ,you need to use another phone or enable this function",
     profile: "Profile",
     balance: "Balance",
     noCard: "Let's see your Mi Movilidad card balance!",
@@ -51,6 +54,14 @@ export default {
     cancel: "Cancel",
     loading: "Please wait...",
     route: "Route",
+    noNetwork: {
+      title: "No Internet Connection",
+      body: "An internet connection is required to use this module. Please enable Wi-Fi or mobile data.",
+    },
+    noLocation: {
+      title: "Location Permission Required",
+      body: "Location access is required to use this module. Please open your device settings and grant this permission.",
+    },
   },
   miruta: {
     selection: "Select a route",

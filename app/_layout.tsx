@@ -20,6 +20,12 @@ export default function RootLayout() {
             header: () => <SelectorAppbar />,
           }}
         />
+        <Stack.Screen
+          name="(modals)/terms-acceptance"
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack>
       <StatusBar style="auto" />
     </Providers>

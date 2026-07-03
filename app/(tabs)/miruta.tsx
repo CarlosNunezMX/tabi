@@ -8,10 +8,33 @@ import { RouteShape } from "@carlosnunezmx/basutei";
 import MiRutaMap from "@/components/miruta/map";
 import useRoutes from "@/hooks/useRoutes";
 import { useDevice } from "@/context/device-context";
-import { HasNotComponent } from "@/components/HasNotComponent";
+import { HasNotComponent } from "@/components/has-not-component";
 
 export default function MiRuta() {
   const { location, network, loadLocation } = useDevice();
+  const { route, setLoading, setUnits, setShape } = useMiRuta();
+  useRoutes();
+
+  useEffect(() => {
+    if (!route || !network) return;
+    MiRutaHandler.withClient(async (client) => {
+      setLoading(true);
+      const units = await client.getRouteUnits(route!.id);
+      const shapes = await client.getRouteShape(route!.id);
+      setUnits(units[0]);
+      setShape(shapes as RouteShape);
+      setLoading(false);
+    });
+  }, [route, setLoading, setUnits, setShape, network]);
+
+  if (!network)
+    return (
+      <HasNotComponent
+        icon="wifi-strength-off"
+        title="No network enabled!"
+        description="Enable network"
+      />
+    );
 
   if (!location)
     return (
@@ -22,28 +45,7 @@ export default function MiRuta() {
         tryAgain={loadLocation}
       />
     );
-  if (!network)
-    return (
-      <HasNotComponent
-        icon="wifi-strength-off"
-        title="No network enabled!"
-        description="Enable network"
-      />
-    );
 
-  const { route, setLoading, setUnits, setShape } = useMiRuta();
-  useRoutes();
-  useEffect(() => {
-    if (!route) return;
-    MiRutaHandler.withClient(async (client) => {
-      setLoading(true);
-      const units = await client.getRouteUnits(route!.id);
-      const shapes = await client.getRouteShape(route!.id);
-      setUnits(units[0]);
-      setShape(shapes as RouteShape);
-      setLoading(false);
-    });
-  }, [route, setLoading, setUnits, setShape]);
   return (
     <ThemedView>
       <MiRutaMap />

@@ -1,5 +1,8 @@
 export default {
   card: {
+    no_nfc_title: "Dispositivo no compatible",
+    no_nfc_body:
+      "El dispositivo no tiene lector NFC o no esta activo, comprueba tu dispositivo o activa el NFC para usar esta función",
     profiles: "Perfil instalado",
     validAt: "Vencimiento",
     profile: "Perfil",
@@ -49,6 +52,14 @@ export default {
     cancel: "Cancelar",
     loading: "Espera unos instantes...",
     tryAgain: "Volvamos a intentar...",
+    noNetwork: {
+      title: "Sin conexión a Internet",
+      body: "Para usar este módulo es necesario una conexión a internet! Por favor active su WiFi o Datos Moviles.",
+    },
+    noLocation: {
+      title: "No hay permiso de ubicación!",
+      body: "Para usar este módulo es necesario dar acceso a su ubicación! Por favor entre en ajustes y otorgue este permiso.",
+    },
   },
   miruta: {
     selection: "Selecciona una ruta",

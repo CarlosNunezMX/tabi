@@ -15,6 +15,7 @@
     "@carlosnunezmx/micard": "npm:@jsr/carlosnunezmx__micard@^1.0.5",
     "@expo/vector-icons": "^15.0.3",
     "@pchmn/expo-material3-theme": "^1.4.0",
+    "@react-native-async-storage/async-storage": "2.2.0",
     "@react-native-vector-icons/material-design-icons": "^13.1.2",
     "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.6.3",

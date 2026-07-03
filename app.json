@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "JericayApp",
-    "slug": "Jericayapp",
-    "version": "1.0.0",
+    "name": "JericayApp - Tabi",
+    "slug": "JericayApp Tabi",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "Jericayapp",

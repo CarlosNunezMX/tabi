@@ -1,4 +1,4 @@
-import { ProfileValues } from "@/lib/com.jericayapp.card";
+import { ProfileValues } from "@carlosnunezmx/micard";
 
 export const profiles: Record<ProfileValues, string> = {
   TARIFA_GENERAL: "Tarifa general",
