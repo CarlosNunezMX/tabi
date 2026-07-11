@@ -46,7 +46,14 @@ export default function MiRutaMap() {
 
   return (
     <MapView styleURL={style} style={{ flex: 1 }}>
-      <Camera followZoomLevel={16} followUserLocation />
+      <Camera
+        defaultSettings={{
+          centerCoordinate: [-103.349, 20.6597],
+          zoomLevel: 16 
+        }}
+        followZoomLevel={16} 
+        followUserLocation 
+      />
       <LocationPuck
         puckBearingEnabled
         puckBearing="course"
